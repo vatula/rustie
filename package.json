@@ -1,0 +1,23 @@
+{
+  "name": "rustie",
+  "version": "0.0.1",
+  "description": "Rustie is a static site builder that is flexible enough to work in a browser and node environment",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vatula/rustie.git"
+  },
+  "keywords": [
+    "rustie",
+    "vatula"
+  ],
+  "author": "Bogdan Vatulya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vatula/rustie/issues"
+  },
+  "homepage": "https://github.com/vatula/rustie#readme"
+}
