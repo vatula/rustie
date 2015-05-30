@@ -1,9 +1,9 @@
-import {IO} from '../io';
+import promisify  from 'promisify-node';
+import path       from 'path';
+import {IO}       from '../io';
 
-let promisify = require('promisify-node');
 let readdir   = promisify('recursive-readdir');
 let mkdirp    = promisify('mkdirp');
-let path      = require('path');
 let fs        = promisify('fs');
 
 function memoizerFactory(from, files) {
@@ -47,10 +47,8 @@ export class NodeIO extends IO {
 
   async write(to, files) {
     let filePaths = Object.keys(files);
-    console.log('will write', files);
     let asyncBulkWriter = asyncBulkWriterFactory(writeFile, to, files);
     let writerResult = filePaths.map(asyncBulkWriter);
-    console.log(`Almost there!`, writerResult);
     await Promise.all(writerResult);
     return true
   }
