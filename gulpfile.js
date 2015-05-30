@@ -13,12 +13,12 @@ gulp.task('clear', function() {
 
 gulp.task('default', ['clear'], function() {
   return gulp.src('src/rustie.js')
-    .pipe(babel({stage: 1, optional: ['runtime']}))
+    .pipe(babel())
     .pipe(rename({basename: 'index'}))
     .pipe(gulp.dest('lib'));
 });
 
-gulp.task('test', ['default'], function() {
+gulp.task('test', function() {
   return gulp.src('test/**/*.js', {read: false})
     .pipe(mocha({reporter: 'nyan'}));
 });
