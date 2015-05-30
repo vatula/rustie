@@ -1,6 +1,6 @@
 import {RustieAbstractClassError} from '../errors';
 
-class IO {
+export class IO {
 
   constructor() {
     if (this.constructor === IO) {

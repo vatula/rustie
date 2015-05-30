@@ -2,6 +2,7 @@ import {IO} from '../io';
 
 let promisify = require('promisify-node');
 let readdir   = promisify('recursive-readdir');
+let mkdirp    = promisify('mkdirp');
 let path      = require('path');
 let fs        = promisify('fs');
 
@@ -16,7 +17,8 @@ function memoizerFactory(from, files) {
 function asyncBulkWriterFactory(writer, to, files) {
   return async function asyncBulkWriter(filePath) {
     let file = path.resolve(to, filePath);
-    return writer(file, files[filePath]);
+    await mkdirp(to);
+    return await writer(files[filePath], file);
   }
 }
 
@@ -27,13 +29,13 @@ async function readFile(filePath) {
 }
 
 async function writeFile(data, to) {
-  fs.outputFile(to, data.contents);
+  return await fs.writeFile(to, data.contents);
 }
 
 export class NodeIO extends IO {
 
-  constructor(from, to) {
-    super(from, to);
+  constructor() {
+    super();
   }
 
   async read(from) {
@@ -45,8 +47,11 @@ export class NodeIO extends IO {
 
   async write(to, files) {
     let filePaths = Object.keys(files);
+    console.log('will write', files);
     let asyncBulkWriter = asyncBulkWriterFactory(writeFile, to, files);
-    await Promise.all(filePaths.map(asyncBulkWriter));
+    let writerResult = filePaths.map(asyncBulkWriter);
+    console.log(`Almost there!`, writerResult);
+    await Promise.all(writerResult);
     return true
   }
 }
