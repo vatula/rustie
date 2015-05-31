@@ -9,7 +9,7 @@ export class IO {
   }
 
   //noinspection JSMethodCanBeStatic
-  async read(/*from*/) { return []; }
+  async read(/*from*/) { return Object.create(null); }
 
   //noinspection JSMethodCanBeStatic
   async write(/*to, files*/) { return true; }

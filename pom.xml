@@ -21,6 +21,11 @@
     </dependencies>
     <build>
         <directory>lib/java</directory>
+        <resources>
+            <resource>
+                <directory>lib/javascript</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,5 +1,5 @@
 var vinylPaths  = require('vinyl-paths');
-var rename      = require('gulp-rename');
+var concat      = require('gulp-concat');
 var babel       = require('gulp-babel');
 var mocha       = require('gulp-mocha');
 var gulp        = require('gulp');
@@ -16,10 +16,10 @@ gulp.task('clear', function() {
 });
 
 gulp.task('default', ['clear'], function() {
-  return gulp.src([sources, project, 'rustie.js'].join('/'))
+  return gulp.src([sources, project, '**/*.js'].join('/'))
     .pipe(babel())
-    .pipe(rename({basename: 'index'}))
-    .pipe(gulp.dest('lib'));
+    .pipe(concat('rustie.js'))
+    .pipe(gulp.dest('lib/javascript'));
 });
 
 gulp.task('test', function() {
