@@ -1,5 +1,6 @@
 import promisify  from 'promisify-node';
 import path       from 'path';
+import {Data}     from '../../data';
 import {IO}       from '../io';
 
 let readdir   = promisify('recursive-readdir');
@@ -23,14 +24,17 @@ function asyncBulkWriterFactory(writer, to, files) {
 }
 
 async function readFile(filePath) {
-  let data = Object.create(null);
   let contents = await fs.readFile(filePath);
-  data.contents = new Uint8Array(contents);
-  return data;
+  return new Data(new Uint8Array(contents));
 }
 
+/**
+ * @param   {Data}    data
+ * @param   {String}  to
+ * @returns {Promise}
+ */
 async function writeFile(data, to) {
-  return await fs.writeFile(to, new Buffer(data.contents));
+  return await fs.writeFile(to, new Buffer(data.content));
 }
 
 export class NodeIO extends IO {
