@@ -24,12 +24,13 @@ function asyncBulkWriterFactory(writer, to, files) {
 
 async function readFile(filePath) {
   let data = Object.create(null);
-  data.contents = await fs.readFile(filePath);
+  let contents = await fs.readFile(filePath);
+  data.contents = new Uint8Array(contents);
   return data;
 }
 
 async function writeFile(data, to) {
-  return await fs.writeFile(to, data.contents);
+  return await fs.writeFile(to, new Buffer(data.contents));
 }
 
 export class NodeIO extends IO {
@@ -45,7 +46,7 @@ export class NodeIO extends IO {
     return filePaths.reduce(memoizer, Object.create(null));
   }
 
-  async write(to, files) {
+  async write(to, files = Object.create(null)) {
     let filePaths = Object.keys(files);
     let asyncBulkWriter = asyncBulkWriterFactory(writeFile, to, files);
     let writerResult = filePaths.map(asyncBulkWriter);
