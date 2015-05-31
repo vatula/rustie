@@ -6,19 +6,23 @@ var gulp        = require('gulp');
 var del         = require('del');
                   require('babel-core/register');
 
+var sources = 'src/main/javascript';
+var tests   = 'src/test/javascript';
+var project = 'com/robobeak/rustie';
+
 gulp.task('clear', function() {
-  return gulp.src('lib/index.js', {read: false})
+  return gulp.src('lib/*', {read: false})
     .pipe(vinylPaths(del));
 });
 
 gulp.task('default', ['clear'], function() {
-  return gulp.src('src/rustie.js')
+  return gulp.src([sources, project, 'rustie.js'].join('/'))
     .pipe(babel())
     .pipe(rename({basename: 'index'}))
     .pipe(gulp.dest('lib'));
 });
 
 gulp.task('test', function() {
-  return gulp.src('test/**/*.js', {read: false})
+  return gulp.src([tests, project, '**/*.js'].join('/'), {read: false})
     .pipe(mocha({reporter: 'nyan'}));
 });

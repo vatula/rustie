@@ -1,6 +1,6 @@
-import {Pipeline} from '../src/pipeline';
-import {Rustie}   from '../src/rustie';
-import {NodeIO}   from '../src/pl/node/node-io';
+import {Pipeline} from '../../../../../../src/main/javascript/com/robobeak/rustie/pipeline';
+import {Rustie}   from '../../../../../../src/main/javascript/com/robobeak/rustie/rustie';
+import {NodeIO}   from '../../../../../../src/main/javascript/com/robobeak/rustie/pl/node/node-io';
 
 let expect  = require('chai').expect;
 let path    = require('path');
