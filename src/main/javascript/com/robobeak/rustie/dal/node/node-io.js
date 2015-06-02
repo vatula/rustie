@@ -39,10 +39,6 @@ async function writeFile(data, to) {
 
 export class NodeIO extends IO {
 
-  constructor() {
-    super();
-  }
-
   async read(from) {
     let filePaths = (await readdir(from)).reduce((result, item) => result.concat(item), []);
     let files = await Promise.all(filePaths.map(readFile));
@@ -55,6 +51,6 @@ export class NodeIO extends IO {
     let asyncBulkWriter = asyncBulkWriterFactory(writeFile, to, files);
     let writerResult = filePaths.map(asyncBulkWriter);
     await Promise.all(writerResult);
-    return true
+    return true;
   }
 }
