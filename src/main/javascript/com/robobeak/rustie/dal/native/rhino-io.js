@@ -51,7 +51,6 @@ async function writeFile(data, to) {
 
 export class RhinoIO extends IO {
 
-
   async read(from) {
     let filePaths = (await readdir(from)).reduce((result, item) => result.concat(item), []);
     let files = await Promise.all(filePaths.map(readFile));

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/vatula/rustie#readme",
   "devDependencies": {
+    "amdlite": "git://github.com/vatula/amdlite.git",
     "babel-core": "^5.4.7",
     "babel-runtime": "^5.4.7",
     "chai": "^2.3.0",
@@ -28,8 +29,8 @@
     "del": "^1.2.0",
     "gulp": "^3.8.11",
     "gulp-babel": "^5.1.0",
-    "amdlite": "git://github.com/vatula/amdlite.git",
     "gulp-concat": "^2.5.2",
+    "gulp-if": "^1.2.5",
     "gulp-mocha": "^2.1.0",
     "mkdirp": "^0.5.1",
     "promisify-node": "^0.1.5",

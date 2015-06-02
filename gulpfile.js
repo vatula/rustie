@@ -1,4 +1,5 @@
 var vinylPaths  = require('vinyl-paths');
+var gulpIf      = require('gulp-if');
 var concat      = require('gulp-concat');
 var babel       = require('gulp-babel');
 var mocha       = require('gulp-mocha');
@@ -16,8 +17,13 @@ gulp.task('clear', function() {
 });
 
 gulp.task('default', ['clear'], function() {
-  return gulp.src([sources, project, '**/*.js'].join('/'))
-    .pipe(babel())
+  return gulp.src([
+    'node_modules/babel-core/browser-polyfill.min.js',
+    //'node_modules/amdlite/amdlite.min.js',
+    [sources, project, '**/*.js'].join('/'),
+    '!**/node-io.js'
+  ])
+    .pipe(gulpIf('!**/*.min.js', babel()))
     .pipe(concat('rustie.js'))
     .pipe(gulp.dest('lib/javascript'));
 });
