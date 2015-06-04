@@ -1,5 +1,5 @@
 import {Data} from '../../data';
-import {IO}   from '../io';
+import {IO}   from './io';
 
 async function readdir(path) {
   let result = [];

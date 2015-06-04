@@ -1,6 +1,4 @@
-import {Pipeline} from '../../../../../../src/main/javascript/com/robobeak/rustie/pipeline';
-import {Rustie}   from '../../../../../../src/main/javascript/com/robobeak/rustie/rustie';
-import {NodeIO}   from '../../../../../../src/main/javascript/com/robobeak/rustie/dal/node/node-io';
+import {Rustie} from '../../../../../../src/main/javascript/com/robobeak/rustie/rustie-node-file';
 
 let expect  = require('chai').expect;
 let path    = require('path');
@@ -11,9 +9,9 @@ describe('rustie', () => {
 
   describe('#ctor', () => {
     it('should initialize pipeline and io', () => {
-      let io = Object.create(null);
-      let rustie = new Rustie(io);
-      expect(rustie._io).to.equal(io);
+      let rustie = new Rustie();
+      expect(rustie._reader).to.exist;
+      expect(rustie._writer).to.exist;
     });
   });
   describe('#build', () => {
@@ -22,7 +20,7 @@ describe('rustie', () => {
       let from = path.resolve(fixture('basic'), 'src');
       let to = path.resolve(fixture('basic'), 'build');
 
-      let rustie = new Rustie(new NodeIO());
+      let rustie = new Rustie();
       rustie.build(from, to).then(result => {
         expect(result).to.be.true;
         done();

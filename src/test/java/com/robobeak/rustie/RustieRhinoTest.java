@@ -28,7 +28,7 @@ public class RustieRhinoTest {
         final Scanner lines = new java.util.Scanner(getClass().getResourceAsStream("/rustie.js")).useDelimiter("\\A");
         final String sourceCode = lines.hasNext() ? lines.next() : "";
 //        System.out.println(sourceCode);
-        context.evaluateString(scope, sourceCode, "main", 1, null);
+        context.evaluateString(scope, sourceCode + "; ", "main", 1, null);
         Context.exit();
 //        System.out.println(Arrays.deepToString(result.toArray()));
 //        org.junit.Assert.assertNotNull(result);
