@@ -12,6 +12,10 @@ export class Data {
     return this._content;
   }
 
+  set content(value) {
+    this._content = value;
+  }
+
   get metadata() {
     return this._metadata;
   }

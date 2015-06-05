@@ -1,10 +1,13 @@
-import {Rustie as RustieBase} from './rustie';
-import {NodeFileReder}        from './dal/node/file-reader';
-import {NodeFileWriter}       from './dal/node/file-writer';
+import {Rustie as RustieBase}   from './rustie';
+import {process as FrontMatter} from './plugins/front-matter/index';
+import {NodeFileReder}          from './dal/node/file-reader';
+import {NodeFileWriter}         from './dal/node/file-writer';
 
 
 export class Rustie {
   constructor() {
-    return new RustieBase(new NodeFileReder(), new NodeFileWriter());
+    let rustie = new RustieBase(new NodeFileReder(), new NodeFileWriter());
+    rustie.addPlugins(FrontMatter);
+    return rustie;
   }
 }

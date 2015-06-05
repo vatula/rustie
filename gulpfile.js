@@ -18,7 +18,7 @@ gulp.task('clear', function() {
 
 gulp.task('default', ['clear'], function() {
   return gulp.src([
-    'node_modules/babel-core/browser-polyfill.min.js',
+    //'node_modules/babel-core/browser-polyfill.min.js',
     //'node_modules/amdlite/amdlite.min.js',
     [sources, project, '**/*.js'].join('/'),
     '!**/node-io.js'
