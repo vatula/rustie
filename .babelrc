@@ -1,5 +1,6 @@
 {
   "stage": 1,
   "modules": "umd",
-  "optional": ["runtime"]
+  "optional": ["runtime"],
+  "moduleIds": true
 }
