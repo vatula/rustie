@@ -1,5 +1,10 @@
-import jsyaml from './js-yaml';
+import marked from './marked';
 
+/* TODO utilities are also plugins.
+ Like, utilities.strings.{toUint8, fromUint8} etc
+ utilities can serve as a dependency for plugins
+ utilities can depend on other utilities
+*/
 
 function uint8ToString(u8a) {
   const CHUNK_SIZE = 0x8000;
@@ -18,24 +23,12 @@ function stringToUint8(str) {
   return result;
 }
 
-function getPosition(str, m, i) {
-  return str.split(m, i).join(m).length;
-}
 
 export async function process(files) {
-  let delimiter = '---', yamlSnippet;
   Object.keys(files).forEach(path => {
-    let frontmatter = Object.create(null);
     let file = files[path];
     let contentString = uint8ToString(file.content);
-    let lastDelimiter = getPosition(contentString, delimiter, 2);
-    if (lastDelimiter) {
-      yamlSnippet = contentString.substring(delimiter.length, lastDelimiter);
-      frontmatter = jsyaml.load(yamlSnippet);
-      contentString = contentString.substring(lastDelimiter + delimiter.length).trim();
-    }
-    file.content = stringToUint8(contentString);
-    file.metadata.frontmatter = frontmatter;
+    file.content = stringToUint8(marked(contentString));
   });
   return files;
 }
