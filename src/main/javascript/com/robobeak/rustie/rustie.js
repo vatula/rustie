@@ -1,4 +1,4 @@
-import {Pipeline} from './pipeline';
+import {Pipeline} from '/com/robobeak/rustie/pipeline';
 
 export class Rustie {
   constructor(reader, writer) {

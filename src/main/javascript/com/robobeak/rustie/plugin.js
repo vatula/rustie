@@ -1,4 +1,4 @@
-import {RustieAbstractClassError} from './errors';
+import {RustieAbstractClassError} from '/com/robobeak/rustie/errors';
 
 export class Plugin {
   constructor() {

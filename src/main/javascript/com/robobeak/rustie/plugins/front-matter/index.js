@@ -1,5 +1,5 @@
-import {Plugin} from '../../index';
-import jsyaml from './js-yaml';
+import {Plugin} from '/com/robobeak/rustie/index';
+import jsyaml from '/com/robobeak/rustie/plugins/front-matter/js-yaml';
 
 
 function uint8ToString(u8a) {

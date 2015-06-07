@@ -1,5 +1,5 @@
-import {Plugin} from '../../index';
-import marked   from './marked';
+import {Plugin} from '/com/robobeak/rustie/index';
+import marked   from '/com/robobeak/rustie/plugins/markdown/marked';
 
 /* TODO utilities are also plugins.
  Like, utilities.strings.{toUint8, fromUint8} etc
