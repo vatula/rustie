@@ -1,4 +1,5 @@
-import marked from './marked';
+import {Plugin} from '../../index';
+import marked   from './marked';
 
 /* TODO utilities are also plugins.
  Like, utilities.strings.{toUint8, fromUint8} etc
@@ -23,12 +24,13 @@ function stringToUint8(str) {
   return result;
 }
 
-
-export async function process(files) {
-  Object.keys(files).forEach(path => {
-    let file = files[path];
-    let contentString = uint8ToString(file.content);
-    file.content = stringToUint8(marked(contentString));
-  });
-  return files;
+export class Markdown extends Plugin {
+  async process(files) {
+    Object.keys(files).forEach(path => {
+      let file = files[path];
+      let contentString = uint8ToString(file.content);
+      file.content = stringToUint8(marked(contentString));
+    });
+    return files;
+  }
 }

@@ -1,4 +1,4 @@
-import {Writer} from '../writer';
+import {Writer} from '../../index';
 
 export class NullWriter extends Writer {
   //noinspection JSMethodCanBeStatic

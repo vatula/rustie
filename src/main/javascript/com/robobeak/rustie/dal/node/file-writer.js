@@ -1,6 +1,6 @@
 import promisify  from 'promisify-node';
 import path       from 'path';
-import {Writer}   from '../writer';
+import {Writer}   from '../../index';
 
 let mkdirp    = promisify('mkdirp');
 let fs        = promisify('fs');

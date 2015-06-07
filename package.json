@@ -2,7 +2,7 @@
   "name": "rustie",
   "version": "0.0.1",
   "description": "Rustie is a static site builder that is flexible enough to work in a browser and node environment",
-  "main": "index.js",
+  "main": "lib/javascript/rustie.js",
   "scripts": {
     "test": "gulp test"
   },
@@ -32,13 +32,12 @@
     "gulp-concat": "^2.5.2",
     "gulp-if": "^1.2.5",
     "gulp-mocha": "^2.1.0",
+    "gulp-mustache": "^1.0.2",
     "js-yaml": "^3.3.1",
+    "marked": "^0.3.3",
     "mkdirp": "^0.5.1",
     "promisify-node": "^0.1.5",
     "recursive-readdir": "^1.2.1",
     "vinyl-paths": "^1.0.0"
-  },
-  "dependencies": {
-    "marked": "^0.3.3"
   }
 }

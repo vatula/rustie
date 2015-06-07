@@ -1,7 +1,6 @@
-import promisify  from 'promisify-node';
-import path       from 'path';
-import {Reader}   from '../reader';
-import {Data}     from '../../data';
+import promisify      from 'promisify-node';
+import path           from 'path';
+import {Data, Reader} from '../../index';
 
 let readdir   = promisify('recursive-readdir');
 let fs        = promisify('fs');

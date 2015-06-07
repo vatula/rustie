@@ -1,4 +1,4 @@
-import {Reader} from '../reader';
+import {Reader} from '../../index';
 
 export class NullReader extends Reader {
   //noinspection JSMethodCanBeStatic
