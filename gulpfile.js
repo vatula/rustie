@@ -21,7 +21,7 @@ gulp.task('default', ['clear'], function() {
     //'node_modules/babel-core/browser-polyfill.min.js',
     //'node_modules/amdlite/amdlite.min.js',
     [sources, project, '**/*.js'].join('/'),
-    '!**/node-io.js'
+    '!**/native/*'
   ])
     .pipe(gulpIf('!**/*.min.js', babel()))
     .pipe(concat('rustie.js'))
