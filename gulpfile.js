@@ -2,6 +2,7 @@ var vinylPaths  = require('vinyl-paths');
 var gulpIf      = require('gulp-if');
 var concat      = require('gulp-concat');
 var babel       = require('gulp-babel');
+var webpack     = require('gulp-webpack');
 var mocha       = require('gulp-mocha');
 var gulp        = require('gulp');
 var del         = require('del');
@@ -17,13 +18,23 @@ gulp.task('clear', function() {
 });
 
 gulp.task('default', ['clear'], function() {
-  return gulp.src([
-    //'node_modules/babel-core/browser-polyfill.min.js',
-    //'node_modules/amdlite/amdlite.min.js',
-    [sources, project, '**/*.js'].join('/'),
-    '!**/native/*'
-  ])
-    .pipe(gulpIf('!**/*.min.js', babel()))
+  return gulp.src([sources, project, 'index.js'].join('/'))
+    .pipe(webpack({
+      output: {
+        libraryTarget: 'umd'
+      },
+      module: {
+        loaders: [{
+          test: /\.js$/,
+          exclude: /(node_modules)/,
+          loader: 'babel',
+          query: {
+            "stage": 1,
+            "optional": ["runtime"]
+          }
+        }]
+      }
+    }))
     .pipe(concat('rustie.js'))
     .pipe(gulp.dest('lib/javascript'));
 });
