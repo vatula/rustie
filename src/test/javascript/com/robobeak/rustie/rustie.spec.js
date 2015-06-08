@@ -1,4 +1,4 @@
-import {Rustie} from '/com/robobeak/rustie/rustie';
+import {NodeRustie} from '../../../../../../src/main/javascript/com/robobeak/rustie/rustie-node-file';
 
 let expect  = require('chai').expect;
 let path    = require('path');

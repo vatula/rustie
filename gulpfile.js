@@ -23,13 +23,7 @@ gulp.task('default', ['clear'], function() {
     [sources, project, '**/*.js'].join('/'),
     '!**/native/*'
   ])
-    .pipe(gulpIf('!**/*.min.js', babel({
-      "stage": 1,
-      "modules": "umd",
-      "optional": ["runtime"],
-      "moduleIds": true,
-      "moduleRoot": "/com/robobeak/rustie"
-    })))
+    .pipe(gulpIf('!**/*.min.js', babel()))
     .pipe(concat('rustie.js'))
     .pipe(gulp.dest('lib/javascript'));
 });

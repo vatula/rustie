@@ -1,4 +1,4 @@
-import {RustieAbstractClassError} from '/com/robobeak/rustie/errors';
+import {RustieAbstractClassError} from '../errors';
 
 export class Writer {
 
