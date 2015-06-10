@@ -8,6 +8,7 @@ export class Rustie {
   }
   addPlugins(...plugins) {
     this._pipeline.addProcessors(...plugins);
+    return this;
   }
   async build(from, to) {
     let files = await this._reader.read(from);
